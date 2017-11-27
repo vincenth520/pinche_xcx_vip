@@ -1,0 +1,53 @@
+/* pages/driver/authentication.wxss */
+page{background: #eee;}
+.weui-toptips_info {
+  background-color: orange;
+      position: relative!important;
+}
+.weui-uploader__bd{background: #fff;margin-top:10px;}
+.head{height: 100px;width: 100%;background: #fff;border-bottom:1px solid #eee;}
+.step{
+    padding:40px 0px;
+    height:2px;
+}
+.flowList{
+    width:250rpx;
+    height:2px;
+    background-color: #eee;
+    float:left;
+    position: relative;
+  }
+.success{
+    background-color: #67c23a;
+}
+.success .flowListText{
+    border:2px solid #67c23a;
+    color:#67c23a;
+}
+.flowListText{
+    position: absolute;
+    left: 100rpx;
+    border:2px solid #ccc;
+    background: #fff;
+    margin-top: -30rpx;
+    width: 50rpx;
+    height: 50rpx;
+    font-size: 30rpx;
+    line-height: 50rpx;
+    border-radius: 50%;
+    text-align: center;
+    color:#ccc;
+}
+.success .flowListTextInfo{
+    color:#67c23a;
+}
+.flowListTextInfo{font-size: 22rpx;text-align: center;display:block;
+margin-top:20px;
+}
+.uploader__input-box__title{display: inline-block;width:300rpx;margin-left:25rpx}
+.weui-uploader__input-box {width:285rpx;height:200rpx;margin-left:25rpx}
+.weui-uploader__input-box-img:before, .weui-uploader__input-box-img:after {
+  content:'';
+  background: none;
+}
+.weui-uploader__input-box-img{border:none;}

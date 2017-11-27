@@ -1,0 +1,245 @@
+<view class="page" bindtap="closeErr">
+  <!--页头-->
+  <view class="page__hd" wx-if="{{thisStep == 1}}">
+    <view class="weui-toptips weui-toptips_info">您的信息仅用于平台审核</view>
+    <view class="head">
+      <view class='step'>
+        <view class="flowList {{thisStep>=1 ? 'success':''}}">
+          <view class="flowListText">1</view>
+          <text class="flowListTextInfo">填写身份信息</text>
+        </view>
+        <view class="flowList {{thisStep>=2 ? 'success':''}}">
+          <view class="flowListText">2</view>
+          <text class="flowListTextInfo">填写车辆信息</text>
+        </view>
+        <view class="flowList {{thisStep>=3 ? 'success':''}}">
+          <view class="flowListText">3</view>
+          <text class="flowListTextInfo">上传证件</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+
+
+  <view class="form">
+    <view class="page__bd">
+      <!-- 填写身份信息 -->
+      <form wx-if="{{thisStep == 1}}" bindsubmit="second">
+        <view class="weui-cells__title">身份信息</view>
+        <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell weui-cell_input">
+            <view class="weui-cell__hd">
+              <view class="weui-label">姓名</view>
+            </view>
+            <view class="weui-cell__bd">
+              <input class="weui-input" name="name" placeholder="请输入姓名" value="{{driver.name}}" />
+            </view>
+          </view>
+          <view class="weui-cell weui-cell_input">
+            <view class="weui-cell__hd">
+              <view class="weui-label">性别</view>
+            </view>
+            <view class="weui-cell__bd">
+              <picker mode="selector" name="gender" value="{{driver.gender}}" range="{{sex}}" bindchange="selectsex">
+                <view class="weui-input">{{sex[driver.gender]}}</view>
+              </picker>
+            </view>
+          </view>
+
+          <view class="weui-cell weui-cell_input weui-cell_vcode">
+            <view class="weui-cell__hd">
+              <view class="weui-label">身份证号</view>
+            </view>
+            <view class="weui-cell__bd">
+              <input class="weui-input" type="number" maxlength="18" name="idnumber" placeholder="请输入身份证号" value="{{driver.idnumber}}" />
+            </view>
+          </view>
+          <view class="weui-cell weui-cell_input">
+            <view class="weui-cell__hd">
+              <view class="weui-label">所在城市</view>
+            </view>
+            <view class="weui-cell__bd">
+              <view class="weui-input" name="city" bindtap="open">
+                {{province}}-{{city}}-{{county}}
+              </view>
+            </view>
+          </view>
+          <view class="weui-cell weui-cell_input">
+            <view class="weui-cell__hd">
+              <view class="weui-label">驾照领取日期</view>
+            </view>
+            <view class="weui-cell__bd">
+              <picker mode="date" name="firstgetdate" value="{{driver.firstgetdate}}" bindchange="bindDateChange">
+                <view class="weui-input">{{driver.firstgetdate}}</view>
+              </picker>
+            </view>
+          </view>
+
+
+
+        </view>
+        <view class="weui-btn-area">
+          <button class="weui-btn" type="primary" formType="submit">下一步</button>
+        </view>
+      </form>
+
+      <!-- 填写车辆信息 -->
+      <form wx-if="{{thisStep == 2}}" bindsubmit="thrid" bindreset="tofirst">
+        <view class="weui-cells__title">行驶证信息</view>
+        <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell weui-cell_input">
+            <view class="weui-cell__hd">
+              <view class="weui-label">车牌号</view>
+            </view>
+            <view class="weui-cell__bd">
+              <input class="weui-input" name="platenumber" placeholder="请输入车牌号" value="{{driver.platenumber}}" />
+            </view>
+          </view>
+          <view class="weui-cell weui-cell_input">
+            <view class="weui-cell__hd">
+              <view class="weui-label">汽车车型</view>
+            </view>
+            <view class="weui-cell__bd">
+              <input class="weui-input" name="vehicle" placeholder="请输入汽车车型" value="{{driver.vehicle}}" />
+            </view>
+          </view>
+
+          <view class="weui-cell weui-cell_input weui-cell_vcode">
+            <view class="weui-cell__hd">
+              <view class="weui-label">汽车颜色</view>
+            </view>
+            <view class="weui-cell__bd">
+              <input class="weui-input" name="color" placeholder="请输入汽车颜色" value="{{driver.color}}" />
+            </view>
+          </view>
+          <view class="weui-cell weui-cell_input">
+            <view class="weui-cell__hd">
+              <view class="weui-label">车辆所有人</view>
+            </view>
+            <view class="weui-cell__bd">
+              <input class="weui-input" name="owner" value="{{driver.owner}}" />
+            </view>
+          </view>
+          <view class="weui-cell weui-cell_input">
+            <view class="weui-cell__hd">
+              <view class="weui-label">车辆注册日期</view>
+            </view>
+            <view class="weui-cell__bd">
+              <picker mode="date" name="cargetdate" value="{{driver.cargetdate}}" bindchange="changecargetdate">
+                <view class="weui-input">{{driver.cargetdate}}</view>
+              </picker>
+            </view>
+          </view>
+        </view>
+        <view class="weui-btn-area">
+          <button class="weui-btn" type="primary" formType="submit">下一步</button>
+          <button class="weui-btn" type="default" formType="reset">上一步</button>
+        </view>
+      </form>
+
+      <!-- 上传证件 -->
+      <form wx-if="{{thisStep == 3}}" bindsubmit="commit" bindreset="tosecond">
+        <view class="weui-cell__bd">
+          <view class="weui-uploader">
+            <view class="weui-uploader__bd">
+              <text class="uploader__input-box__title">本人驾照</text>
+              <text class="uploader__input-box__title">车辆行驶证</text>
+              <view class="weui-uploader__input-box" wx-if="{{driver.driverlicense == ''}}">
+                <view class="weui-uploader__input" bindtap="chooseDriverLicense">
+                </view>
+              </view>              
+              <image src="{{driver.driverlicense}}" wx-if="{{driver.driverlicense != ''}}" bindtap="chooseDriverLicense" class="weui-uploader__input-box weui-uploader__input-box-img">
+              </image>
+              
+              <view class="weui-uploader__input-box" wx-if="{{driver.drivinglicense == ''}}">
+                <view class="weui-uploader__input" bindtap="chooseDrivingLicense">
+                </view>
+              </view>
+                <image src="{{driver.drivinglicense}}"  bindtap="chooseDrivingLicense" wx-if="{{driver.drivinglicense != ''}}" class="weui-uploader__input-box weui-uploader__input-box-img"></image>
+            </view>
+            <view class="weui-uploader__bd">
+              <text class="uploader__input-box__title">身份证(正面)</text>
+              <text class="uploader__input-box__title">身份证(反面)</text>
+              <view class="weui-uploader__input-box" wx-if="{{driver.idcard1 == ''}}">
+                <view class="weui-uploader__input" bindtap="chooseidcard1"></view>
+              </view>
+                <image src="{{driver.idcard1}}"  bindtap="chooseidcard1" wx-if="{{driver.idcard1 != ''}}" class="weui-uploader__input-box weui-uploader__input-box-img"></image>
+              <view class="weui-uploader__input-box" wx-if="{{driver.idcard2 == ''}}">
+                <view class="weui-uploader__input" bindtap="chooseidcard2"></view>
+              </view>
+                <image src="{{driver.idcard2}}"  bindtap="chooseidcard2" wx-if="{{driver.idcard2 != ''}}" class="weui-uploader__input-box weui-uploader__input-box-img"></image>
+            </view>
+          </view>
+        </view>
+        <view class="weui-btn-area">
+          <button class="weui-btn" type="primary" formType='submit'>确认提交</button>
+          <button class="weui-btn" type="default" formType='reset'>上一步</button>
+        </view>
+      </form>
+
+      <view class="weui-msg" wx-if="{{thisStep == 4}}">
+        <view class="weui-msg__icon-area">
+            <icon type="success" size="93"></icon>
+        </view>
+        <view class="weui-msg__text-area">
+            <view class="weui-msg__title">提交成功</view>
+            <view class="weui-msg__desc">我们将在7个工作日内尽快对您的资料进行审核，感谢您的申请</view>
+        </view>
+        <view class="weui-msg__opr-area">
+            <view class="weui-btn-area">
+                <button class="weui-btn" type="primary" bindtap='close'>确定</button>
+            </view>
+        </view>
+      </view>
+
+      <view class="weui-msg" wx-if="{{thisStep == 5}}">
+        <view class="weui-msg__icon-area">
+            <icon type="success" size="93"></icon>
+        </view>
+        <view class="weui-msg__text-area">
+            <view class="weui-msg__title">认证成功</view>
+            <view class="weui-msg__desc">您已经成功通过了车主认证,现在您可以发布拼车信息了，感谢您的使用</view>
+        </view>
+        <view class="weui-msg__opr-area">
+            <view class="weui-btn-area">
+                <button class="weui-btn" type="primary" bindtap='close'>确定</button>
+            </view>
+        </view>
+      </view>
+
+      <view class="weui-msg" wx-if="{{thisStep == 6}}">
+        <view class="weui-msg__icon-area">
+            <icon type="warn" size="93"></icon>
+        </view>
+        <view class="weui-msg__text-area">
+            <view class="weui-msg__title">认证失败</view>
+            <view class="weui-msg__desc">您的信息不完整或者不正确,请重新上传</view>
+        </view>
+        <view class="weui-msg__opr-area">
+            <view class="weui-btn-area">
+                <button class="weui-btn" type="primary" bindtap='tofirst'>确定</button>
+            </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view wx:if="{{condition}}" class="citypicker">
+    <picker-view indicator-style="height: 50px;" style="width: 100%; height: 300px;background:#fff" value="{{value}}" bindchange="bindChange" class="citybody">
+      <view class="cityheader">
+        <view bindtap="open" class="city-true">确定</view>
+        <view bindtap="open" class="city-cancel">取消</view>
+      </view>
+      <picker-view-column>
+        <view wx:for="{{provinces}}" wx:key="item" style="line-height: 50px;padding-left:10px;">{{item}}</view>
+      </picker-view-column>
+      <picker-view-column>
+        <view wx:for="{{citys}}" wx:key="item" style="line-height: 50px;padding-left:10px;">{{item}}</view>
+      </picker-view-column>
+      <picker-view-column>
+        <view wx:for="{{countys}}" wx:key="item" style="line-height: 50px;padding-left:10px;">{{item}}</view>
+      </picker-view-column>
+    </picker-view>
+  </view>
+</view>
