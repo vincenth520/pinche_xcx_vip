@@ -55,7 +55,11 @@ Page({
         that.getList(that.data.date, res.address, that.data.over);
       },
       fail: function () {
-        util.modal('错误', '请检查是否开启手机定位');
+        that.setData({
+          start: ''
+        })
+        that.getList(that.data.date, '', that.data.over);
+        //util.modal('错误', '请检查是否开启手机定位');
       }
     })
   },
@@ -69,7 +73,11 @@ Page({
         that.getList(that.data.date, that.data.start,res.address);
       },
       fail: function () {
-        util.modal('错误', '请检查是否开启手机定位');
+        that.setData({
+          over: ''
+        })
+        that.getList(that.data.date, that.data.start,'');
+        //util.modal('错误', '请检查是否开启手机定位');
       }
     })
   },
@@ -171,14 +179,18 @@ Page({
           header: { 'Content-Type': 'application/json' },
           success: function(res){
             that.setData({
-              start:res.data.result.addressComponent.city
+              start: res.data.result.formatted_address
             })
-            that.getList(that.data.date,res.data.result.addressComponent.city);
+            that.getList(that.data.date, res.data.result.formatted_address);
           }
         })
       },
       fail:function(){
-        util.modal('错误','请检查是否开启手机定位');
+        that.setData({
+          start: ''
+        })
+        that.getList(that.data.date, '');
+        //util.modal('错误','请检查是否开启手机定位');
       }
     });
 
