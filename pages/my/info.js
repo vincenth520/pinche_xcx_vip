@@ -184,7 +184,7 @@ Page({
           delta: 1
         })
       } else {
-        util.isError(data.errmsg, that);
+        util.isError(data.msg, that);
       }
     })
   },
