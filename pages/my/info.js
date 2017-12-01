@@ -93,10 +93,15 @@ Page({
       return false;
     }
     util.req('getcode', { phone: that.data.userInfo.phone},function(data){
-      that.setData({
-        'waitCode': true
-      });
-      that.countdown(60);
+      if (data.status) {
+        that.setData({
+          'waitCode': true
+        });
+        that.countdown(60);
+      }else{
+        util.isError(data.msg, that);
+        return false;
+      }
     })
   },
    countdown:function(time){
