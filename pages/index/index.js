@@ -133,7 +133,7 @@ Page({
             avatarUrl:item.avatarUrl,
             goods:item.goods,
             url: '/pages/info/index?id=' + item.id,
-            tm: util.getDateDiff(Date.parse(new Date(item.leave_time)))
+            tm: util.getDateDiff(Date.parse(new Date(item.leave_time.replace(/-/g, '/'))))
             };
             list.push(obj);
             if(item.type == 1){
