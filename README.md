@@ -10,4 +10,4 @@
 
 
 ## 预览
-!(效果演示)[http://tbm.alicdn.com/rs2fBssndJYwZvZwiwO/lLbudWjf33BJuCsNAVx%40%40sd.mp4]
+[效果演示](http://tbm.alicdn.com/rs2fBssndJYwZvZwiwO/lLbudWjf33BJuCsNAVx%40%40sd.mp4)
