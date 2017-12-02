@@ -24,7 +24,8 @@ Page({
     sliderLeft: 0,
     start:'',
     over:'',
-    adList: []
+    adList: [],
+    images: {}
   },
   tabClick: function (e) {
         this.setData({
@@ -32,6 +33,21 @@ Page({
             activeIndex: e.currentTarget.id
         });
     },
+  autoLoad:function(e){
+    var $width = e.detail.width,    
+      $height = e.detail.height,
+      ratio = $width / $height;   
+    var viewWidth = 750,           
+      viewHeight = 750 / ratio;    
+    var image = this.data.images;
+    image[e.target.dataset.index] = {
+      width: viewWidth,
+      height: viewHeight
+    }
+    this.setData({
+      images: image
+    })
+  },
   bindDateChange:function(e){
     this.setData({
       date:e.detail.value

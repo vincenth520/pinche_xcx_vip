@@ -5,7 +5,7 @@
   autoplay="true" interval="5000" duration="500">
   <block wx:for="{{adList}}">
     <swiper-item>
-      <navigator url="/pages/notice/index?id={{item.url}}"> <image src="{{item.img}}"  class="slide-image"/></navigator>
+      <navigator url="/pages/notice/index?id={{item.url}}"> <image src="{{item.img}}" bindload="autoLoad" style="width:{{ images[index].width }}rpx; height:{{ images[index].height }}rpx;" data-index="{{ index }}"   class="slide-image"/></navigator>
     </swiper-item>
   </block>
 </swiper>

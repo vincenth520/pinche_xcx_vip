@@ -8,3 +8,6 @@
 - 填寫你在後台配置的appid
 - 打開utils/utils.js修改rootDocment為你`php artisan start:codems`裡面配置的域名
 
+
+## 预览
+!(效果演示)[http://tbm.alicdn.com/rs2fBssndJYwZvZwiwO/lLbudWjf33BJuCsNAVx%40%40sd.mp4]
