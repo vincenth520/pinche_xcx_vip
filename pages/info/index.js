@@ -256,5 +256,25 @@ Page({
       page++;
       this.getComment(this.data.data.id);
     }
-  }
+  },
+  opendepartureTopSet: function () {
+    var that = this;
+    var res = JSON.parse(that.data.data.departureTopSet);
+    wx.openLocation({
+      latitude: res.latitude, // 纬度，范围为-90~90，负数表示南纬  
+      longitude: res.longitude, // 经度，范围为-180~180，负数表示西经  
+      scale: 28, // 缩放比例  
+      name: that.data.data.departure            
+    })
+  },
+  opendestinationTopSet: function () {
+    var that = this;
+    var res = JSON.parse(that.data.data.destinationTopSet);
+    wx.openLocation({
+      latitude: res.latitude, // 纬度，范围为-90~90，负数表示南纬  
+      longitude: res.longitude, // 经度，范围为-180~180，负数表示西经  
+      scale: 28, // 缩放比例   
+      name: that.data.data.destination  
+    })
+  } 
 })

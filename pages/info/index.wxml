@@ -43,7 +43,9 @@
         <view class="p remark">
             {{data.remark}}
         </view>
-
+        <button class="weui-btn mini-btn" type="default" bindtap='opendepartureTopSet' size="mini">导航去起点</button>
+        <text></text>
+        <button class="weui-btn mini-btn" bindtap='opendestinationTopSet'  type="default" size="mini">导航去终点</button>
     </view>
 
     <view id="comment_list">

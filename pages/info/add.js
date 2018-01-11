@@ -4,6 +4,10 @@ var app = getApp();
 var today = util.formatTime(new Date((new Date()).getTime() + (1000 * 60 * 60 * 24 * 1))).split(' ')[0];
 var minday = util.formatTime(new Date()).split(' ')[0];
 var maxday =  util.formatTime(new Date((new Date()).getTime()+(1000*60*60*24*62))).split(' ')[0];
+
+var departure = new Set();
+var destination = new Set();
+
 Page({
   data:{
     sex: ['请选择性别','男','女'],
@@ -113,6 +117,8 @@ Page({
     delete data.isAgree;
     data.departure = that.data.departure;
     data.destination = that.data.destination;
+    data.departureTopSet = JSON.stringify(departure);
+    data.destinationTopSet = JSON.stringify(destination);
     util.req('info/add',data,function(data){
       if(data.status){
         wx.redirectTo({
@@ -129,6 +135,8 @@ Page({
     var that = this;
     wx.chooseLocation({
       success:function(res){
+        departure.latitude = res.latitude;
+        departure.longitude = res.longitude;
         that.setData({
           departure:res.address
         })
@@ -141,7 +149,9 @@ Page({
   sexDestination:function(){
     var that = this;
     wx.chooseLocation({
-      success:function(res){
+      success: function (res) {
+        destination.latitude = res.latitude;
+        destination.longitude = res.longitude;
         that.setData({
           destination:res.address
         })

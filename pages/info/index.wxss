@@ -63,3 +63,6 @@
 .back{position: fixed;top:70px;left:0px;background: rgba(0, 0, 0, 0.5);padding:9px 20px 5px 10px;border-bottom-right-radius:2em;border-top-right-radius:2em;}
 .back image{width:20px;height: 20px;}
 .weui-input{overflow: hidden}
+.mini-btn{
+    margin-right: 5px;
+}
