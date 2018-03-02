@@ -46,7 +46,11 @@
                                 <view class="weui-media-box__desc list_desc">出发：{{item.date}} {{item.time}}</view>
                                 <view class="weui-media-box__info">
                                     <view class="weui-media-box__info__meta list_type_{{item.tp}}">{{item.type}}</view>
-                                    <view class="weui-media-box__info__meta"><image src="/img/people.png" class="list_icon"></image><text>{{item.surplus}}</text><image src="/img/goods.png" class="list_icon" wx-if="{{item.goods == 1}}"></image></view>
+                                    <view class="weui-media-box__info__meta">
+                                      <image src="/img/people.png" class="list_icon"></image>
+                                      <text>{{item.surplus}}</text>
+                                      <image src="/img/goods.png" class="list_icon" wx-if="{{item.goods == 1}}"></image>
+                                    </view>
                                 </view>
                             </view>
                         </navigator>

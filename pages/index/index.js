@@ -136,20 +136,30 @@ Page({
           } catch (e) {
             var over = (item.destination).split(/[县区]/)[0];
           }
-
+          var tm = util.getDateDiff(Date.parse(new Date(item.leave_time.replace(/-/g, '/'))));
+          var time = item.leave_time;
+          if (item.mode == '2'){
+            tm = '天天拼';
+            time = item.leave_time.split(' ')[1];
+            var now = util.dateFtt('hh:mm:ss', new Date());
+            if ( time < now){
+              return true;
+            }
+          }
           var obj = {
             start:start,
             over:over,
             type:that.data.tabs[item.type],
             tp:item.type,
-            time:item.leave_time,
+            time: time,
             surplus:item.surplus+surp[item.type],
             see:item.see,
             gender:item.gender,
             avatarUrl:item.avatarUrl,
             goods:item.goods,
+            mode:item.mode,
             url: '/pages/info/index?id=' + item.id,
-            tm: util.getDateDiff(Date.parse(new Date(item.leave_time.replace(/-/g, '/'))))
+            tm: tm
             };
             list.push(obj);
             if(item.type == 1){

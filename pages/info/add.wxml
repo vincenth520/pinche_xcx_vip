@@ -50,6 +50,21 @@
                         </radio-group>
                     </view>
                 </view>
+                <view class="weui-cell weui-cell_input" wx:if="{{type == 1}}">
+                    <view class="weui-cell__hd">
+                        <view class="weui-label">有效期</view>
+                    </view>
+                    <view class="weui-cell__bd">
+                        <radio-group class="radio-group weui-cell weui-check__label" name="mode" bindchange="selectMode">
+                            <label class="radio">
+                                <radio value="1" checked="true"/><text>单次</text>
+                            </label>
+                            <label class="radio">
+                                <radio value="2" /><text>天天拼车</text>
+                            </label>
+                        </radio-group>
+                    </view>
+                </view>
                 <view class="weui-cell weui-cell_input StartAndStop">
                     <view class="weui-cell__hd">
                         <view class="weui-label">出发地</view>
@@ -70,7 +85,7 @@
                         
                 <view class="weui-cell weui-cell_input">
                     <view class="weui-cell__hd">
-                        <view class="weui-label">出发日期</view>
+                        <view class="weui-label">{{dateText[mode]}}</view>
                     </view>
                     <view class="weui-cell__bd">
                         <picker mode="date" name="date" value="{{date}}" start="{{start}}" end="{{end}}" bindchange="bindDateChange">

@@ -26,7 +26,9 @@ Page({
     destination:'目的地',
     goods:0,
     price:'',
-    remark:''
+    remark:'',
+    mode:'1',
+    dateText:['','出发日期', '截止日期']
   },
   goodsChange:function(e){
     if(e.detail.value[0] == 1){
@@ -50,6 +52,9 @@ Page({
   },
   selectType:function(e){
     this.setData({type:e.detail.value})
+  },
+  selectMode: function (e) {
+    this.setData({ mode: e.detail.value })
   },
   setsurplus:function(e){
     this.setData({surplus:e.detail.value})
