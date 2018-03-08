@@ -18,7 +18,8 @@ Page({
     isAgree: false,
     vehicle:'',
     departure:'出发地',
-    destination:'目的地'
+    destination: '目的地',
+    dateText: ['', '出发时间', '截止时间']
   },
   setSex:function(e){
     this.setData({'data.gender':e.detail.value})

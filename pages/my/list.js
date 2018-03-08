@@ -82,18 +82,26 @@ Page({
           } catch (e) {
             var over = (item.destination).split(/[县区]/)[0];
           }
+          var tm = util.getDateDiff(Date.parse(new Date(item.leave_time.replace(/-/g, '/'))));
+          var time = item.leave_time;
+          if (item.mode == '2') {
+            tm = '天天拼';
+            time = item.leave_time.split(' ')[1];
+            console.log(time);
+          }
           var obj = {
             start: start,
             over: over,
             type:that.data.tabs[item.type],
-            tp:item.type,
-            time:util.formatTime(new Date(item.leave_time)),
+            tp: item.type,
+            time: time,
             surplus:item.surplus+surp[item.type],
             see:item.see,
-            gender:item.gender,
+            gender: item.gender,
+            mode: item.mode,
             url: '/pages/info/index?id=' + item.id,
-            tm: util.getDateDiff(Date.parse(new Date(item.leave_time.replace(/-/g, '/')))),
-            leave_time: item.leave_time,
+            tm: tm,
+            leave_time: time,
             id:item.id
           };
           list.push(obj);

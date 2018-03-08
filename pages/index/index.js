@@ -138,12 +138,15 @@ Page({
           }
           var tm = util.getDateDiff(Date.parse(new Date(item.leave_time.replace(/-/g, '/'))));
           var time = item.leave_time;
-          if (item.mode == '2'){
+          if (item.mode == '2') {
             tm = '天天拼';
-            time = item.leave_time.split(' ')[1];
+            var time = item.leave_time.split(' ')[1];
+            var day = new Date();
             var now = util.dateFtt('hh:mm:ss', new Date());
-            if ( time < now){
-              return true;
+            if (time < now) {
+              time = util.dateFtt('yyyy-MM-dd ', new Date(day.getTime() + 24 * 60 * 60 * 1000)) + time;
+            } else {
+              time = util.dateFtt('yyyy-MM-dd ', new Date()) + time;
             }
           }
           var obj = {

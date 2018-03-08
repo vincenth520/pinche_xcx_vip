@@ -84,7 +84,7 @@ function req(url, data, cb) {
           method: 'post',
           header: { 'Content-Type': 'application/x-www-form-urlencoded' },
           success: function (res) {
-            console.log(res.data);
+            //console.log(res.data);
             return typeof cb == "function" && cb(res.data)
           },
           fail: function () {
@@ -126,7 +126,7 @@ function getReq(url, data, cb) {
         method: 'get',
         header: { 'Content-Type': 'application/x-www-form-urlencoded' },
         success: function (res) {
-          console.log(res.data);
+          //console.log(res.data);
           return typeof cb == "function" && cb(res.data)
         },
         fail: function () {

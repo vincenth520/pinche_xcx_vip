@@ -156,7 +156,8 @@ Page({
     })
 
     util.req('info/index', { id: options.id }, function (data) {
-      console.log(data.data);
+      var reg = new RegExp("null", "g");
+      data.data.remark = (data.data.remark + '').replace(reg, "");
       that.setData({ data: data.data });
       if (data.data.user_id == app.globalData.userInfo.id) {
         var notme = false;
@@ -167,8 +168,19 @@ Page({
       for (var i = 1; i <= data.data.surplus; i++) {
         Surpluss.push(i);
       }
+      var time = data.data.leave_time;
+      if (data.data.mode == '2') {
+        var time = data.data.leave_time.split(' ')[1];
+        var day = new Date();
+        var now = util.dateFtt('hh:mm:ss', new Date());
+        if (time < now) {
+          time = util.dateFtt('yyyy-MM-dd ', new Date(day.getTime() + 24 * 60 * 60 * 1000)) + time;
+        } else {
+          time = util.dateFtt('yyyy-MM-dd ', new Date()) + time;
+        }
+      }
       that.setData({
-        'data.tm': data.data.leave_time,
+        'data.tm': time,
         'data.price': (data.data.price == null) ? '面议' : data.data.price,
         'data.gender': data.data.gender,
         'notme': notme,
@@ -201,7 +213,6 @@ Page({
           comment = new Array();
       }
       isBuzy = false;
-      console.log(comment);
       data.data.forEach(function (item) {
         comment.push({
           id: item.id,
