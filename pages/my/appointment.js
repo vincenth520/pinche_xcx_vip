@@ -48,9 +48,20 @@ Page({
               var status = 3;
               var phone = false;
           }
+          try {
+            var start = ((item.departure).split('市')[1]).replace(/([\u4e00-\u9fa5]+[县区]).+/, '$1');
+          } catch (e) {
+            var start = (item.departure).split(/[县区]/)[0];
+          }
+
+          try {
+            var over = ((item.destination).split('市')[1]).replace(/([\u4e00-\u9fa5]+[县区]).+/, '$1');
+          } catch (e) {
+            var over = (item.destination).split(/[县区]/)[0];
+          }
           arr.push({
-            departure: ((item.departure).split('市')[1]).replace(/([\u4e00-\u9fa5]+[县区]).+/, '$1'),
-            destination: ((item.destination).split('市')[1]).replace(/([\u4e00-\u9fa5]+[县区]).+/, '$1'),
+            departure: start,
+            destination: over,
             time: item.leave_time,
             status: status,
             id:item.id,
