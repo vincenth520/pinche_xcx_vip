@@ -38,11 +38,11 @@ Page({
               id: item.id,
               img: JSON.parse(item.img),
               nickName: item.nickName,
-              time: util.getDateBiff(Date.parse(new Date(item.updated_at))),
+              time: util.getDateBiff(Date.parse(new Date((item.updated_at).replace(/-/g, "/")))), //小程序真机中无法识别时间符号【-】，故此将其转为【/】
               zan: item.zan,
               comments: comment
             }
-            arr.push(li);
+            arr.unshift(li); //将之前的从数组最后添加一个元素改为数组的开头添加元素
             that.setData({ list: arr });
           });
         })
