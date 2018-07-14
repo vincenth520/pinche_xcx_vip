@@ -15,8 +15,13 @@ function formatNumber(n) {
   return n[1] ? n : '0' + n  
 }  
 
-  
+//配置的服务器域名  
 var rootDocment = 'https://pinche.codems.cn/api/';
+//授权登录页的小程序信息
+var wxAppinfo = {
+  'name' : '同城拼车',
+  'logo': 'https://wx.qlogo.cn/mmhead/Q3auHgzwzM7rybV80m98DWUxoty9weLdTwiccIb0JOcfiaX4dK4Fsic5A/0'
+};
 function dateFtt(fmt, date) { //author: meizz   
   var o = {
     "M+": date.getMonth() + 1,                 //月份   
@@ -303,5 +308,6 @@ module.exports = {
   uploadFile: uploadFile,
   objToArray: objToArray,
   modal: modal,
-  dateFtt: dateFtt
+  dateFtt: dateFtt,
+  wxAppinfo: wxAppinfo
 }  

@@ -48,32 +48,8 @@ App({
   },
 
   login:function(){
-    var that = this;
-    wx.login({
-      success: function (res) {
-        wx.getUserInfo({
-          success: function(userinfo){
-            util.req('customer/login', {
-              "code": res.code,
-              "encryptedData": userinfo.encryptedData,
-              "iv": userinfo.iv
-               }, function (data) {
-                 if (data.msg == '账户被禁用'){
-                   wx.showModal({
-                     title: '错误',
-                     content: '账户被禁用,请联系客户处理',
-                   })
-                   return false;
-                 }
-                 that.setUserInfo(data.data.user);
-                 that.setSk(data.data.sk);
-            })
-          },
-          fail: function(res) {
-            that.loginFail();
-          }
-        })
-      }
+    wx.reLaunch({
+      url: '/pages/toLogin/toLogin'
     })
   } ,
 
