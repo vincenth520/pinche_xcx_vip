@@ -72,7 +72,7 @@ Page({
     if (data.phone == '') {
       wx.showModal({
         title: '发布错误',
-        content: '请先进行个人信息认证',
+        content: '请先完善个人信息',
         success: function (res) {
           if (res.confirm) {
             wx.navigateTo({

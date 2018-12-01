@@ -60,6 +60,20 @@ Page({
       path: 'pages/index/index'
     }
   },
+  bindKeystart: function (e) {
+    this.setData({
+      start: e.detail.value
+    })
+    page = 1;
+    this.getList(this.data.date, this.data.start, this.data.over);
+  },
+  bindKeyover: function (e) {
+    this.setData({
+      over: e.detail.value
+    })
+    page = 1;
+    this.getList(this.data.date, this.data.start, this.data.over);
+  },
   chooseStart: function () {
     var that = this;
     wx.chooseLocation({
@@ -208,9 +222,9 @@ Page({
           header: { 'Content-Type': 'application/json' },
           success: function(res){
             that.setData({
-              start: res.data.result.formatted_address
+              start: res.data.result.addressComponent.city
             })
-            that.getList(that.data.date, res.data.result.formatted_address);
+            that.getList(that.data.date, res.data.result.addressComponent.city);
           }
         })
       },
@@ -222,6 +236,12 @@ Page({
         //util.modal('错误','请检查是否开启手机定位');
       }
     });
+
+    util.getReq('config', [], function (data) {
+      if (data.status) {
+        wx.setStorageSync('config', data.data)
+      }
+    })
 
     util.req('banner',[],function(data){
       if(data.status){

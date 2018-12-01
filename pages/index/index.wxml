@@ -11,9 +11,11 @@
 </swiper>
 
   <view class="head">
-    <view class="locationInput" bindtap='chooseStart'>{{start}}</view>
+    <!-- <view class="locationInput" bindtap='chooseStart'>{{start}}</view> -->
+    <input value='{{start}}' class="locationInput" bindinput="bindKeystart" />
     <image src="/img/to.png" class="to"></image>
-    <view bindtap='chooseOver' class="locationInput">{{over}}</view>
+    <input value='{{over}}' class="locationInput" bindinput="bindKeyover" />
+    <!-- <view bindtap='chooseOver' class="locationInput">{{over}}</view> -->
     <image src="/img/date.png" class="dateImg"></image>
     <picker mode="date" value="{{date}}" class="date" start="{{minday}}" end="{{maxday}}" bindchange="bindDateChange">
     <view class="picker">

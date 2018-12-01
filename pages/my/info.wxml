@@ -21,28 +21,40 @@
                     <input class="weui-input" name="nickName" placeholder="请输入昵称" value="{{userInfo.nickName}}"/>
                 </view>
             </view>
-            <view class="weui-cell weui-cell_input weui-cell_vcode">
-                <view class="weui-cell__hd">
-                    <view class="weui-label">手机号</view>
-                </view>
-                <view class="weui-cell__bd">
-                    <input class="weui-input" type="number" maxlength="11" name="phone" placeholder="请输入手机号" value="{{userInfo.phone}}" bindinput="setPhone" disabled="{{existPhone}}"/>
-                </view>
-                <view class="weui-cell__ft" wx:if="{{existPhone}}">
-                    <view class="weui-vcode-btn" bindtap="updatePhone">修改</view>
-                </view>
-            </view>
+            <view wx:if="{{sms_status}}">
+              <view class="weui-cell weui-cell_input weui-cell_vcode">
+                  <view class="weui-cell__hd">
+                      <view class="weui-label">手机号</view>
+                  </view>
+                  <view class="weui-cell__bd">
+                      <input class="weui-input" type="number" maxlength="11" name="phone" placeholder="请输入手机号" value="{{userInfo.phone}}" bindinput="setPhone" disabled="{{existPhone}}"/>
+                  </view>
+                  <view class="weui-cell__ft" wx:if="{{existPhone}}">
+                      <view class="weui-vcode-btn" bindtap="updatePhone">修改</view>
+                  </view>
+              </view>
 
-            <view class="weui-cell weui-cell_input weui-cell_vcode" wx:if="{{!existPhone}}">
-                <view class="weui-cell__hd">
-                    <view class="weui-label">验证码</view>
-                </view>
-                <view class="weui-cell__bd">
-                    <input class="weui-input" type="number" maxlength="5" name="verification" placeholder="请输入验证码" value="{{verification}}" />
-                </view>
-                <view class="weui-cell__ft" bindtap="getCode">
-                    <view class="weui-vcode-btn">{{ getCodeText }}</view>
-                </view>
+              <view class="weui-cell weui-cell_input weui-cell_vcode" wx:if="{{!existPhone}}">
+                  <view class="weui-cell__hd">
+                      <view class="weui-label">验证码</view>
+                  </view>
+                  <view class="weui-cell__bd">
+                      <input class="weui-input" type="number" maxlength="5" name="verification" placeholder="请输入验证码" value="{{verification}}" />
+                  </view>
+                  <view class="weui-cell__ft" bindtap="getCode">
+                      <view class="weui-vcode-btn">{{ getCodeText }}</view>
+                  </view>
+              </view>
+            </view>
+            <view wx:else>
+              <view class="weui-cell weui-cell_input weui-cell_vcode">
+                  <view class="weui-cell__hd">
+                      <view class="weui-label">手机号</view>
+                  </view>
+                  <view class="weui-cell__bd">
+                      <input class="weui-input" type="number" maxlength="11" name="phone" placeholder="请输入手机号" value="{{userInfo.phone}}" bindinput="setPhone" />
+                  </view>
+              </view>
             </view>
 
             <view class="weui-cell weui-cell_input">

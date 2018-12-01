@@ -19,7 +19,8 @@ Page({
     condition: false,
     verification:'',
     getCodeText:'获取验证码',
-    waitCode:false
+    waitCode:false,
+    sms_status:0,
   },
    bindChange: function(e) {
     //console.log(e);
@@ -170,17 +171,21 @@ Page({
 
     var formData = that.data.userInfo;
 
-    if (that.data.existPhone) {
+    if (that.data.existPhone && that.data.sms_status) {
       delete formData.phone;
     }else{
-      if (e.detail.value.verification == '') {
+      if (e.detail.value.verification == '' && that.data.sms_status) {
         util.isError('请输入验证码', that);
         return false;
       }
       formData.verification = e.detail.value.verification;
     }
     formData = util.objToArray(formData);
-
+    console.log(formData)
+    if (!formData.phone) {
+      util.isError('请输入手机号码', that);
+      return false;
+    }
     util.req('customer/editUser', formData, function (data) {
       if (data.status) {
         util.clearError(that);
@@ -195,6 +200,8 @@ Page({
   },
   onLoad: function () {
     var that = this
+    var config = wx.getStorageSync('config')
+    this.setData('sms_status',config.sms_status);
     wx.getStorage({
       key: 'userInfo',
       success: function(res){
