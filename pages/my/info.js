@@ -201,7 +201,7 @@ Page({
   onLoad: function () {
     var that = this
     var config = wx.getStorageSync('config')
-    this.setData('sms_status',config.sms_status);
+    this.setData({ 'sms_status': parseInt(config.sms_status)});
     wx.getStorage({
       key: 'userInfo',
       success: function(res){
