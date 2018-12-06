@@ -114,6 +114,7 @@ Page({
   },
   //填写车辆信息
   second:function(e){
+    console.log(e.detail.value);
     var driverData = e.detail.value;
     driverData.province = this.data.province;
     driverData.city = this.data.city;
@@ -146,6 +147,7 @@ Page({
   },
   //上传证件
   thrid: function (e) {
+    console.log(e.detail.value);
     var driverData = e.detail.value;
     if (driverData.platenumber == '') {
       util.modal('提示', '请输入车牌号');
@@ -156,7 +158,7 @@ Page({
       return false;
     }
     if (driverData.color == '') {
-      util.modal('提示', '请选择color');
+      util.modal('提示', '请选择颜色');
       return false;
     }
     if (driverData.owner == '') {
@@ -202,7 +204,13 @@ Page({
         app.reflashUser();
         that.setData({ 'thisStep': 4 });
       }else{
-        util.modal('提示', '请检查您的输入');
+        try{
+          console.log(data.errors)
+          var message = data.errors[Object.keys(data.errors)[0]][0];
+        } catch (err) {
+          var message = '请检查您的输入';
+        }
+        util.modal('提示', message);
         return false;
       }
     })
